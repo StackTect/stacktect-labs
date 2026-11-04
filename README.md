@@ -16,7 +16,7 @@ videos/<date>-<topic>/
 
 | Date | Video | Lab | Needs |
 |---|---|---|---|
-| 2026-11-04 | Load Balancer: What Happens When a Server Dies? *(link added after upload)* | [load-balancer-server-dies](videos/2026-11-04-load-balancer-server-dies/) | Python 3.8+ |
+| 2026-11-04 | [Load Balancer: What Happens When a Server Dies?](https://youtu.be/knawyvH6kOQ) | [load-balancer-server-dies](videos/2026-11-04-load-balancer-server-dies/) | Python 3.8+ |
 
 ## About the numbers
 - Numbers in `results/` come from real runs on our machine. They are listed with the date, the Python version and the settings that were used.

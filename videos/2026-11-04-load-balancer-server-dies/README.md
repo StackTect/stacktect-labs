@@ -1,6 +1,6 @@
 # Load Balancer: What Happens When a Server Dies?
 
-Video: *(YouTube link added after upload)*
+Video: https://youtu.be/knawyvH6kOQ
 
 In this lab you run three tiny servers and a small load balancer on your own laptop. Then you send them 50 requests a second
 and kill one server while the requests are flowing. You'll see how many users get an error, and how health checks, retries,
