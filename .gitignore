@@ -1,0 +1,46 @@
+# stacktect-labs: allowlist. Only code, setup guides and results go in this repo.
+# Everything is ignored first, then only the allowed paths are added back.
+
+# 1. Ignore everything at the top level...
+/*
+# ...except these files and the videos folder
+!/.gitignore
+!/README.md
+!/LICENSE
+!/LICENSE-docs
+!/videos/
+
+# 2. Inside each video folder, ignore everything...
+/videos/*/*
+# ...except the setup guide, the code and the results
+!/videos/*/README.md
+!/videos/*/code/
+!/videos/*/results/
+
+# 3. Never commit these, even inside allowed folders
+# fresh local runs (curated results go to results/ by hand)
+/videos/*/code/results-*.json
+/videos/*/code/run-*.log
+# Python / editor junk
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+.idea/
+.vscode/
+# secrets
+.env
+.env.*
+*.key
+*.pem
+*secret*
+*token*
+# packet captures can hold IPs, cookies and visited sites: publish screenshots instead
+*.pcap
+*.pcapng
+# media (videos/renders live in the private pipeline, not here)
+*.mp4
+*.mov
+*.wav
+*.mp3

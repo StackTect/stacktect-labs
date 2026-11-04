@@ -1,0 +1,58 @@
+date: 2026-11-03T10:01:53  python 3.14.8  cpu threads 16
+50 req/s for 30 s, :8002 hit at 10 s, client gives up after 10 s, 5 repeats per run
+### 1 plain: lb.py 8000 8001 8002 8003   (kill -KILL)
+1 plain     failed  334 (502: 334, no answer: 0), window 19.96 s, slowest 24.7 ms, >1 s: 0, p99 24.3 ms, signal at 10.0 s
+1 plain     failed  334 (502: 334, no answer: 0), window 19.96 s, slowest 24.9 ms, >1 s: 0, p99 24.4 ms, signal at 10.0 s
+1 plain     failed  334 (502: 334, no answer: 0), window 19.96 s, slowest 24.8 ms, >1 s: 0, p99 24.6 ms, signal at 10.0 s
+1 plain     failed  334 (502: 334, no answer: 0), window 19.96 s, slowest 24.5 ms, >1 s: 0, p99 24.4 ms, signal at 10.0 s
+1 plain     failed  334 (502: 334, no answer: 0), window 19.96 s, slowest 24.6 ms, >1 s: 0, p99 24.3 ms, signal at 10.0 s
+  range: failed 334-334, no_answer 0-0, fail_window_s 19.96-19.96, slowest_ms 24.5-24.9, over_1s 0-0, p99_ms 24.3-24.6
+
+### 2 health: lb.py 8000 8001 8002 8003 --health  (kill -KILL)
+2 health    failed   32 (502: 32, no answer: 0), window 1.84 s, slowest 24.6 ms, >1 s: 0, p99 24.2 ms, signal at 10.0 s
+2 health    failed   31 (502: 31, no answer: 0), window 1.78 s, slowest 30.0 ms, >1 s: 0, p99 25.3 ms, signal at 10.0 s
+2 health    failed   31 (502: 31, no answer: 0), window 1.78 s, slowest 29.5 ms, >1 s: 0, p99 27.5 ms, signal at 10.0 s
+2 health    failed   32 (502: 32, no answer: 0), window 1.84 s, slowest 24.0 ms, >1 s: 0, p99 23.6 ms, signal at 10.0 s
+2 health    failed   31 (502: 31, no answer: 0), window 1.78 s, slowest 23.9 ms, >1 s: 0, p99 23.7 ms, signal at 10.0 s
+  range: failed 31-32, no_answer 0-0, fail_window_s 1.78-1.84, slowest_ms 23.9-30.0, over_1s 0-0, p99_ms 23.6-27.5
+
+### 3 retry: lb.py 8000 8001 8002 8003 --health --retry  (kill -KILL)
+3 retry     failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 44.7 ms, >1 s: 0, p99 29.1 ms, signal at 10.0 s
+3 retry     failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 45.4 ms, >1 s: 0, p99 24.9 ms, signal at 10.0 s
+3 retry     failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 44.2 ms, >1 s: 0, p99 28.2 ms, signal at 10.0 s
+3 retry     failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 43.5 ms, >1 s: 0, p99 23.6 ms, signal at 10.0 s
+3 retry     failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 44.4 ms, >1 s: 0, p99 23.6 ms, signal at 10.0 s
+  range: failed 0-0, no_answer 0-0, fail_window_s 0.0-0.0, slowest_ms 43.5-45.4, over_1s 0-0, p99_ms 23.6-29.1
+
+### 4 frozen: lb.py 8000 8001 8002 8003 --health --retry  (kill -STOP)
+4 frozen    failed   48 (502: 0, no answer: 48), window 2.8 s, slowest 10011.4 ms, >1 s: 48, p99 28.3 ms, signal at 10.0 s
+4 frozen    failed   48 (502: 0, no answer: 48), window 2.8 s, slowest 10011.0 ms, >1 s: 48, p99 24.3 ms, signal at 10.0 s
+4 frozen    failed   49 (502: 0, no answer: 49), window 2.86 s, slowest 10011.2 ms, >1 s: 49, p99 24.6 ms, signal at 10.0 s
+4 frozen    failed   48 (502: 0, no answer: 48), window 2.8 s, slowest 10011.0 ms, >1 s: 48, p99 24.3 ms, signal at 10.0 s
+4 frozen    failed   49 (502: 0, no answer: 49), window 2.86 s, slowest 10011.1 ms, >1 s: 49, p99 24.5 ms, signal at 10.0 s
+  range: failed 48-49, no_answer 48-49, fail_window_s 2.8-2.86, slowest_ms 10011.0-10011.4, over_1s 48-49, p99_ms 24.3-28.3
+
+### 5 timeout: lb.py 8000 8001 8002 8003 --health --retry --timeout 0.5  (kill -STOP)
+5 timeout   failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 525.0 ms, >1 s: 0, p99 524.2 ms, signal at 10.0 s
+5 timeout   failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 524.9 ms, >1 s: 0, p99 524.2 ms, signal at 10.0 s
+5 timeout   failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 525.7 ms, >1 s: 0, p99 524.8 ms, signal at 10.0 s
+5 timeout   failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 525.6 ms, >1 s: 0, p99 524.8 ms, signal at 10.0 s
+5 timeout   failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 525.8 ms, >1 s: 0, p99 525.1 ms, signal at 10.0 s
+  range: failed 0-0, no_answer 0-0, fail_window_s 0.0-0.0, slowest_ms 524.9-525.8, over_1s 0-0, p99_ms 524.2-525.1
+
+### 6a nodrain: lb.py 8000 8001 8002 8003 --health  (kill -TERM, every 10th request /slow)
+6a nodrain  failed   36 (502: 36, no answer: 0), window 1.84 s, slowest 2006.4 ms, >1 s: 0, p99 24.7 ms, signal at 10.0 s
+6a nodrain  failed   36 (502: 36, no answer: 0), window 1.84 s, slowest 2005.8 ms, >1 s: 0, p99 24.7 ms, signal at 10.0 s
+6a nodrain  failed   35 (502: 35, no answer: 0), window 1.78 s, slowest 2006.6 ms, >1 s: 0, p99 24.5 ms, signal at 10.0 s
+6a nodrain  failed   36 (502: 36, no answer: 0), window 1.84 s, slowest 2006.0 ms, >1 s: 0, p99 24.5 ms, signal at 10.0 s
+6a nodrain  failed   36 (502: 36, no answer: 0), window 1.84 s, slowest 2008.8 ms, >1 s: 0, p99 24.8 ms, signal at 10.0 s
+  range: failed 35-36, no_answer 0-0, fail_window_s 1.78-1.84, slowest_ms 2005.8-2008.8, over_1s 0-0, p99_ms 24.5-24.8
+
+### 6b drain: lb.py 8000 8001 8002 8003 --health  (kill -TERM, drain first, every 10th request /slow)
+6b drain    failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 2011.2 ms, >1 s: 0, p99 29.2 ms, signal at 11.82 s
+6b drain    failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 2005.6 ms, >1 s: 0, p99 25.1 ms, signal at 11.8 s
+6b drain    failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 2006.8 ms, >1 s: 0, p99 23.8 ms, signal at 11.85 s
+6b drain    failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 2015.1 ms, >1 s: 0, p99 30.2 ms, signal at 11.82 s
+6b drain    failed    0 (502: 0, no answer: 0), window 0.0 s, slowest 2005.6 ms, >1 s: 0, p99 24.5 ms, signal at 11.82 s
+  range: failed 0-0, no_answer 0-0, fail_window_s 0.0-0.0, slowest_ms 2005.6-2015.1, over_1s 0-0, p99_ms 23.8-30.2
+

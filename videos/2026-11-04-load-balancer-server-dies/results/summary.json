@@ -1,0 +1,385 @@
+{
+ "settings": {
+  "rate": 50,
+  "duration_s": 30.0,
+  "kill_at_s": 10.0,
+  "victim": 8002,
+  "work_ms": 20,
+  "slow_ms": 2000,
+  "client_timeout_s": 10.0,
+  "health_interval_s": 1.0,
+  "health_check_timeout_s": 0.5,
+  "health_misses_to_remove": 2,
+  "repeats": 5
+ },
+ "source": "results-20261103-100153.json (raw per-request data not published; re-run code/run.py to regenerate)",
+ "runs": [
+  {
+   "name": "1 plain",
+   "flags": [],
+   "signal": "KILL",
+   "slow_mix": false,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     334,
+     334
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     19.96,
+     19.96
+    ],
+    "slowest_ms": [
+     24.5,
+     24.9
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     24.3,
+     24.6
+    ]
+   },
+   "median": {
+    "failed": 334,
+    "no_answer": 0,
+    "fail_window_s": 19.96,
+    "slowest_ms": 24.7,
+    "p99_ms": 24.4
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 167,
+    "8002": 166,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 250,
+    "8002": 0,
+    "8003": 250
+   }
+  },
+  {
+   "name": "2 health",
+   "flags": [
+    "--health"
+   ],
+   "signal": "KILL",
+   "slow_mix": false,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     31,
+     32
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     1.78,
+     1.84
+    ],
+    "slowest_ms": [
+     23.9,
+     30.0
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     23.6,
+     27.5
+    ]
+   },
+   "median": {
+    "failed": 31,
+    "no_answer": 0,
+    "fail_window_s": 1.78,
+    "slowest_ms": 24.6,
+    "p99_ms": 24.2
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 167,
+    "8002": 166,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  },
+  {
+   "name": "3 retry",
+   "flags": [
+    "--health",
+    "--retry"
+   ],
+   "signal": "KILL",
+   "slow_mix": false,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     0,
+     0
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     0.0,
+     0.0
+    ],
+    "slowest_ms": [
+     43.5,
+     45.4
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     23.6,
+     29.1
+    ]
+   },
+   "median": {
+    "failed": 0,
+    "no_answer": 0,
+    "fail_window_s": 0.0,
+    "slowest_ms": 44.4,
+    "p99_ms": 24.9
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 168,
+    "8002": 166,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  },
+  {
+   "name": "4 frozen",
+   "flags": [
+    "--health",
+    "--retry"
+   ],
+   "signal": "STOP",
+   "slow_mix": false,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     48,
+     49
+    ],
+    "no_answer": [
+     48,
+     49
+    ],
+    "fail_window_s": [
+     2.8,
+     2.86
+    ],
+    "slowest_ms": [
+     10011.0,
+     10011.4
+    ],
+    "over_1s": [
+     48,
+     49
+    ],
+    "p99_ms": [
+     24.3,
+     28.3
+    ]
+   },
+   "median": {
+    "failed": 48,
+    "no_answer": 48,
+    "fail_window_s": 2.8,
+    "slowest_ms": 10011.1,
+    "p99_ms": 24.5
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 167,
+    "8002": 166,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  },
+  {
+   "name": "5 timeout",
+   "flags": [
+    "--health",
+    "--retry",
+    "--timeout",
+    "0.5"
+   ],
+   "signal": "STOP",
+   "slow_mix": false,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     0,
+     0
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     0.0,
+     0.0
+    ],
+    "slowest_ms": [
+     524.9,
+     525.8
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     524.2,
+     525.1
+    ]
+   },
+   "median": {
+    "failed": 0,
+    "no_answer": 0,
+    "fail_window_s": 0.0,
+    "slowest_ms": 525.6,
+    "p99_ms": 524.8
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 168,
+    "8002": 166,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  },
+  {
+   "name": "6a nodrain",
+   "flags": [
+    "--health"
+   ],
+   "signal": "TERM",
+   "slow_mix": true,
+   "drain": false,
+   "range_min_max": {
+    "failed": [
+     35,
+     36
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     1.78,
+     1.84
+    ],
+    "slowest_ms": [
+     2005.8,
+     2008.8
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     24.5,
+     24.8
+    ]
+   },
+   "median": {
+    "failed": 36,
+    "no_answer": 0,
+    "fail_window_s": 1.84,
+    "slowest_ms": 2006.4,
+    "p99_ms": 24.7
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 167,
+    "8002": 162,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  },
+  {
+   "name": "6b drain",
+   "flags": [
+    "--health"
+   ],
+   "signal": "TERM",
+   "slow_mix": true,
+   "drain": true,
+   "range_min_max": {
+    "failed": [
+     0,
+     0
+    ],
+    "no_answer": [
+     0,
+     0
+    ],
+    "fail_window_s": [
+     0.0,
+     0.0
+    ],
+    "slowest_ms": [
+     2005.6,
+     2015.1
+    ],
+    "over_1s": [
+     0,
+     0
+    ],
+    "p99_ms": [
+     23.8,
+     30.2
+    ]
+   },
+   "median": {
+    "failed": 0,
+    "no_answer": 0,
+    "fail_window_s": 0.0,
+    "slowest_ms": 2006.8,
+    "p99_ms": 25.1
+   },
+   "per_backend_before_kill_rep1": {
+    "8001": 167,
+    "8002": 167,
+    "8003": 166
+   },
+   "per_backend_after_kill_rep1": {
+    "8001": 375,
+    "8002": 0,
+    "8003": 375
+   }
+  }
+ ]
+}
