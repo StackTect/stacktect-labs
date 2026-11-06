@@ -1,0 +1,38 @@
+lo: mtu 1500   delay: 100 ms each way (200 ms round trip)
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1 
+tcp_rmem: 4096	131072	33554432  initial window (tcp_init_cwnd default 10)
+A defaults              first byte 0.614367s  total 1.414615s  bytes 198813
+A defaults              first byte 0.611357s  total 1.411861s  bytes 198813
+A defaults              first byte 0.611764s  total 1.613122s  bytes 198813
+A defaults              first byte 0.612260s  total 1.213155s  bytes 198813
+A defaults              first byte 0.613979s  total 1.415306s  bytes 198813
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1 initcwnd 300 
+B initcwnd 300          first byte 0.612894s  total 1.013326s  bytes 198813
+B initcwnd 300          first byte 0.612975s  total 1.013498s  bytes 198813
+B initcwnd 300          first byte 0.611835s  total 1.012438s  bytes 198813
+B initcwnd 300          first byte 0.612887s  total 1.013240s  bytes 198813
+B initcwnd 300          first byte 0.612194s  total 1.012823s  bytes 198813
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1 initcwnd 300 initrwnd 300 
+C + initrwnd 300        first byte 0.612236s  total 1.013017s  bytes 198813
+C + initrwnd 300        first byte 0.612320s  total 1.012896s  bytes 198813
+C + initrwnd 300        first byte 0.611754s  total 1.012217s  bytes 198813
+C + initrwnd 300        first byte 0.613085s  total 1.013789s  bytes 198813
+C + initrwnd 300        first byte 0.613666s  total 1.014457s  bytes 198813
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1 initrwnd 300 
+D initrwnd 300 only     first byte 0.612254s  total 1.413139s  bytes 198813
+D initrwnd 300 only     first byte 0.612576s  total 1.412813s  bytes 198813
+D initrwnd 300 only     first byte 0.612999s  total 1.413525s  bytes 198813
+D initrwnd 300 only     first byte 0.611311s  total 1.412597s  bytes 198813
+D initrwnd 300 only     first byte 0.611900s  total 1.413006s  bytes 198813
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1   tcp_rmem: 4096	4194304	33554432
+E big rcv buffer only   first byte 0.612643s  total 1.213426s  bytes 198813
+E big rcv buffer only   first byte 0.612985s  total 1.213891s  bytes 198813
+E big rcv buffer only   first byte 0.611968s  total 1.213039s  bytes 198813
+E big rcv buffer only   first byte 0.611660s  total 1.212665s  bytes 198813
+E big rcv buffer only   first byte 0.612318s  total 1.213868s  bytes 198813
+route: local 127.0.0.1 dev lo proto kernel scope host src 127.0.0.1 initcwnd 300 initrwnd 300   tcp_rmem: 4096	4194304	33554432
+F E + initcwnd/rwnd     first byte 0.613271s  total 0.613746s  bytes 198813
+F E + initcwnd/rwnd     first byte 0.612378s  total 0.612891s  bytes 198813
+F E + initcwnd/rwnd     first byte 0.613567s  total 0.614187s  bytes 198813
+F E + initcwnd/rwnd     first byte 0.612191s  total 0.612492s  bytes 198813
+F E + initcwnd/rwnd     first byte 0.613426s  total 0.613958s  bytes 198813

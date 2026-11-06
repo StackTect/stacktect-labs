@@ -21,6 +21,7 @@
 # fresh local runs (curated results go to results/ by hand)
 /videos/*/code/results-*.json
 /videos/*/code/run-*.log
+/videos/*/code/runs/
 # Python / editor junk
 __pycache__/
 *.pyc
