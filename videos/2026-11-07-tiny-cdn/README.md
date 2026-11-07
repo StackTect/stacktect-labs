@@ -1,6 +1,6 @@
 # Does a CDN Make Your Site Faster? I Built One to Find Out
 
-Video: *(link added after the upload on 2026-11-07)*
+Video: [Does a CDN Make Your Site Faster? I Built One to Find Out](https://youtu.be/fctvxCplKnE)
 
 In this lab you build a tiny CDN on your own laptop: an origin server ("the warehouse"), a small caching edge server
 ("the shop down the road") and a measuring script that fetches the same files directly and through the edge.
